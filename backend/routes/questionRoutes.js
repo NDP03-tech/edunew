@@ -1,7 +1,7 @@
 // routes/questionRoutes.js
 const express = require('express');
 const router = express.Router();
-const questionController = require('/Users/nguyendacphuc/Downloads/edu/edu1/backend/controllers/QuestionController.js');
+const questionController = require('../controllers/QuestionController.js');
 
 // Đúng chuẩn RESTful theo prefix `/api/questions`
 router.post('/', questionController.createQuestion);

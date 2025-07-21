@@ -1,4 +1,4 @@
-const Category = require('/Users/nguyendacphuc/Downloads/edu/edu1/backend/models/Category.js');
+const Category = require('../models/Category.js');
 const Quiz = require('../models/Quiz'); // 👈 Thêm dòng này để dùng được Quiz
 
 // Lấy tất cả danh mục

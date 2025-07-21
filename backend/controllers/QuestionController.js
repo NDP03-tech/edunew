@@ -1,4 +1,4 @@
-const Question = require ('/Users/nguyendacphuc/Downloads/edu/edu1/backend/models/Question.js')
+const Question = require ('../models/Question.js')
 // Shuffle utility
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {

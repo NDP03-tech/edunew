@@ -1,4 +1,4 @@
-const Quiz = require('/Users/nguyendacphuc/Downloads/edu/edu1/backend/models/Quiz.js')
+const Quiz = require('../models/Quiz');
 const Question = require ('../models/Question');
 
 // Tạo quiz mới
