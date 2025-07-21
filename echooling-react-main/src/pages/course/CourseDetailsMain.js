@@ -4,7 +4,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import listPlugin from '@fullcalendar/list';
-import RegisterForm from '/Users/nguyendacphuc/Downloads/edu/edu1/echooling-react-main/src/components/ResigterForm/RegisterForm.js';
+import RegisterForm from '../../components/ResigterForm/RegisterForm.js';
 
 const CourseDetailsMain = () => {
   const { id } = useParams();

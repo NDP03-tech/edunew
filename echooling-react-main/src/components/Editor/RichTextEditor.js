@@ -1,6 +1,6 @@
 import React from 'react';
 import { Editor } from '@tinymce/tinymce-react';
-import { convertOldClozeDropLinks } from '/Users/nguyendacphuc/Downloads/edu/edu1/echooling-react-main/src/utils/convertLegacyCloze.js'; 
+import { convertOldClozeDropLinks } from '../../utils/convertLegacyCloze.js'; 
 import './styles.css';
 const RichTextEditor = ({ value, onChange, onCreateGap, onCreateMultipleGap, onDeleteGap, onAddHint, onCreateDropdown }) => {
   console.log("📥 Editor receives value:", value);

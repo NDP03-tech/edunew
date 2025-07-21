@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import axios from 'axios';
 
 import SectionTitle from '../../components/SectionTitle';
-import SingleEvent from '/Users/nguyendacphuc/Downloads/edu/edu1/echooling-react-main/src/components/Event/SingleEvent.js'
+import SingleEvent from '../../components/Event/SingleEvent.js'
 
 const Event = () => {
     const [events, setEvents] = useState([]);
