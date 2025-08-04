@@ -28,7 +28,7 @@ const AdminCourse = () => {
     const fetchCourses = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:5000/api/course', {
+        const response = await fetch('/api/course', {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
@@ -53,7 +53,7 @@ const AdminCourse = () => {
     formData.append('file', file);
 
     try {
-      const response = await fetch('http://localhost:5000/api/upload-media', {
+      const response = await fetch('/api/upload-media', {
         method: 'POST',
         body: formData,
       });
@@ -81,7 +81,7 @@ const AdminCourse = () => {
 
   const handleEdit = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/course/${id}`);
+      const response = await fetch(`/api/course/${id}`);
       const courseToEdit = await response.json();
       setShowModal(true);
       setEditingId(id);
@@ -97,7 +97,7 @@ const AdminCourse = () => {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/course/${id}`, {
+      const response = await fetch(`/api/course/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -126,8 +126,8 @@ const AdminCourse = () => {
       };
 
       const url = isEdit
-        ? `http://localhost:5000/api/course/${editingId}`
-        : 'http://localhost:5000/api/course/create';
+        ? `/api/course/${editingId}`
+        : '/api/course/create';
 
       const method = isEdit ? 'PUT' : 'POST';
       const token = localStorage.getItem('token');
@@ -143,7 +143,7 @@ const AdminCourse = () => {
 
       if (!response.ok) throw new Error('Lỗi khi lưu khóa học');
 
-      const refreshed = await fetch('http://localhost:5000/api/course', {
+      const refreshed = await fetch('/api/course', {
         headers: { Authorization: `Bearer ${token}` },
       });
 

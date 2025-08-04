@@ -29,7 +29,7 @@ const SpeakingRenderer = ({ question, initialAnswer = null, onAnswerChange }) =>
       const formData = new FormData();
       formData.append('file', file);
 
-      const res = await fetch('http://localhost:5000/api/upload-media', {
+      const res = await fetch('/api/upload-media', {
         method: 'POST',
         body: formData,
       });

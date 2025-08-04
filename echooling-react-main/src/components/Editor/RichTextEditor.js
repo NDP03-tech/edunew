@@ -117,7 +117,7 @@ const RichTextEditor = ({ value, onChange, onCreateGap, onCreateMultipleGap, onD
                   const formData = new FormData();
                   formData.append('file', file);
           
-                  fetch('http://localhost:5000/api/upload-media', {
+                  fetch('/api/upload-media', {
                     method: 'POST',
                     body: formData
                   })
@@ -150,14 +150,14 @@ const RichTextEditor = ({ value, onChange, onCreateGap, onCreateMultipleGap, onD
           
           
         // ** Cấu hình upload ảnh **
-        images_upload_url: 'http://localhost:5000/api/upload-media',
+        images_upload_url: '/api/upload-media',
  // URL backend upload ảnh
 
  images_upload_handler: (blobInfo, success, failure) => {
   const formData = new FormData();
   formData.append('file', blobInfo.blob(), blobInfo.filename());
 
-  fetch('http://localhost:5000/api/upload-media', {
+  fetch('/api/upload-media', {
     method: 'POST',
     body: formData,
   })

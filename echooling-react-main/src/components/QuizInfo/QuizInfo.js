@@ -35,7 +35,7 @@ const QuizInfo = ({ onQuizInfoChange, quizId }) => {
 
     useEffect(() => {
         if (quizId) {
-            axios.get(`http://localhost:5000/api/quizzes/${quizId}`)
+            axios.get(`/api/quizzes/${quizId}`)
                 .then(response => {
                     const quiz = response.data;
                     setTitle(quiz.title || '');
@@ -57,14 +57,14 @@ const QuizInfo = ({ onQuizInfoChange, quizId }) => {
     }, [title, category, uiSettings, visibleTo, assignedClasses]);
 
     useEffect(() => {
-        axios.get("http://localhost:5000/api/categories")
+        axios.get("/api/categories")
             .then(res => setCategories(res.data.map(c => c.name)))
             .catch(err => console.error("Lỗi khi lấy danh mục:", err));
     }, []);
 
     useEffect(() => {
         if (visibleTo === 'classes') {
-            axios.get("http://localhost:5000/api/classes")
+            axios.get("/api/classes")
                 .then(res => setAvailableClasses(res.data))
                 .catch(err => console.error("Lỗi khi lấy danh sách lớp:", err));
         }
@@ -405,7 +405,7 @@ const QuizInfo = ({ onQuizInfoChange, quizId }) => {
         <button
           onClick={async () => {
             try {
-              const res = await axios.post('http://localhost:5000/api/categories', {
+              const res = await axios.post('/api/categories', {
                 name: newCategory,
               });
               const newCat = res.data.name;

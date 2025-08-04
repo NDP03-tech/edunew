@@ -80,7 +80,7 @@ const UserManager = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/users', {
+      const res = await axios.get('/api/users', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -101,12 +101,12 @@ const UserManager = () => {
     try {
       const token = localStorage.getItem('token');
       if (editingUser) {
-        await axios.put(`http://localhost:5000/api/users/${editingUser._id}`, values, {
+        await axios.put(`/api/users/${editingUser._id}`, values, {
           headers: { Authorization: `Bearer ${token}` },
         });
         message.success('User updated');
       } else {
-        await axios.post('http://localhost:5000/api/users', values, {
+        await axios.post('/api/users', values, {
           headers: { Authorization: `Bearer ${token}` },
         });
         message.success('User added');
@@ -138,7 +138,7 @@ const UserManager = () => {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/users/${id}`, {
+      await axios.delete(`/api/users/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       message.success('User deleted');

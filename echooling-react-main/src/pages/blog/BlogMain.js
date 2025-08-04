@@ -13,7 +13,7 @@ const BlogMain = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/blog'); // Thay đổi URL API theo backend của bạn
+                const response = await fetch('/api/blog'); // Thay đổi URL API theo backend của bạn
                 if (!response.ok) {
                     throw new Error('Đã xảy ra lỗi khi lấy dữ liệu');
                 }

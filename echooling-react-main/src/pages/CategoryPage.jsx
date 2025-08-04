@@ -20,7 +20,7 @@ const CategoryPage = () => {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/categories');
+      const res = await axios.get('/api/categories');
       setCategories(res.data);
     } catch (err) {
       message.error('Failed to fetch categories');
@@ -33,7 +33,7 @@ const CategoryPage = () => {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/api/categories', { name: newCategory });
+      const res = await axios.post('/api/categories', { name: newCategory });
       setCategories(prev => [...prev, res.data]);
       setNewCategory('');
       message.success('Category added successfully!');
@@ -45,7 +45,7 @@ const CategoryPage = () => {
   const fetchQuizzesByCategory = async (catName) => {
     setSelectedCategory(catName);
     try {
-      const res = await axios.get(`http://localhost:5000/api/categories/${catName}/quizzes`);
+      const res = await axios.get(`/api/categories/${catName}/quizzes`);
       setQuizzes(res.data);
     } catch (err) {
       message.error('Failed to fetch quizzes.');
@@ -65,7 +65,7 @@ const CategoryPage = () => {
       cancelText: 'Cancel',
       onOk: async () => {
         try {
-          await axios.delete(`http://localhost:5000/api/categories/${cat._id}`);
+          await axios.delete(`/api/categories/${cat._id}`);
           setCategories(prev => prev.filter(c => c._id !== cat._id));
 
           if (selectedCategory === cat.name) {

@@ -28,7 +28,7 @@ const AdminBlog = () => {
     const fetchBlogs = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:5000/api/blog', {
+        const response = await fetch('/api/blog', {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
@@ -53,7 +53,7 @@ const AdminBlog = () => {
     formData.append('file', file);
 
     try {
-      const response = await fetch('http://localhost:5000/api/upload-media', {
+      const response = await fetch('/api/upload-media', {
         method: 'POST',
         body: formData,
       });
@@ -81,7 +81,7 @@ const AdminBlog = () => {
 
   const handleEdit = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/blog/${id}`);
+      const response = await fetch(`/api/blog/${id}`);
       const blogToEdit = await response.json();
       setShowModal(true);
       setEditingId(id);
@@ -97,7 +97,7 @@ const AdminBlog = () => {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/blog/${id}`, {
+      const response = await fetch(`/api/blog/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -126,8 +126,8 @@ const AdminBlog = () => {
       };
 
       const url = isEdit
-        ? `http://localhost:5000/api/blog/${editingId}`
-        : 'http://localhost:5000/api/blog/create';
+        ? `/api/blog/${editingId}`
+        : '/api/blog/create';
 
       const method = isEdit ? 'PUT' : 'POST';
       const token = localStorage.getItem('token');
@@ -143,7 +143,7 @@ const AdminBlog = () => {
 
       if (!response.ok) throw new Error('Lỗi khi lưu blog');
 
-      const refreshed = await fetch('http://localhost:5000/api/blog', {
+      const refreshed = await fetch('/api/blog', {
         headers: { Authorization: `Bearer ${token}` },
       });
 

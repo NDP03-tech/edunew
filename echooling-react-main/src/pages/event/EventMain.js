@@ -13,7 +13,7 @@ const EventMain = () => {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/events'); // Gọi API
+                const response = await axios.get('/api/events'); // Gọi API
                 setEvents(response.data); // Lưu dữ liệu sự kiện vào state
                 setLoading(false); // Cập nhật trạng thái loading
             } catch (err) {

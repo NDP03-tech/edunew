@@ -45,10 +45,10 @@ const ClassDetail = () => {
 
   const fetchClassDetails = async () => {
     try {
-      const classRes = await axios.get(`http://localhost:5000/api/classes/${id}`);
+      const classRes = await axios.get(`/api/classes/${id}`);
       setClassInfo(classRes.data);
 
-      const studentsRes = await axios.get(`http://localhost:5000/api/classes/${id}/students`);
+      const studentsRes = await axios.get(`/api/classes/${id}/students`);
       setStudents(studentsRes.data);
     } catch (err) {
       notification.error({ message: 'Failed to fetch class details' });
@@ -63,7 +63,7 @@ const ClassDetail = () => {
   const handleSaveEdit = async () => {
     try {
       const values = form.getFieldsValue();
-      await axios.put(`http://localhost:5000/api/users/${editingStudent._id}`, values);
+      await axios.put(`/api/users/${editingStudent._id}`, values);
       notification.success({ message: 'Student updated successfully' });
       setEditingStudent(null);
       fetchClassDetails();
@@ -75,7 +75,7 @@ const ClassDetail = () => {
   const handleDelete = async (studentId) => {
     try {
       const token = localStorage.getItem("token")
-      await axios.delete(`http://localhost:5000/api/users/${studentId}`);
+      await axios.delete(`/api/users/${studentId}`);
       notification.success({ message: 'Student deleted' });
       fetchClassDetails();
     } catch {
@@ -86,7 +86,7 @@ const ClassDetail = () => {
   const handleBulkRemove = async () => {
     if (!selectedIds.length) return notification.warning({ message: 'No students selected' });
     try {
-      await Promise.all(selectedIds.map(id => axios.delete(`http://localhost:5000/api/users/${id}`)));
+      await Promise.all(selectedIds.map(id => axios.delete(`/api/users/${id}`)));
       notification.success({ message: 'Selected students removed' });
       setSelectedIds([]);
       fetchClassDetails();
@@ -96,7 +96,7 @@ const ClassDetail = () => {
   };
 
   const openAddModal = async () => {
-    const res = await axios.get(`http://localhost:5000/api/users`, {
+    const res = await axios.get(`/api/users`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
     setAllUsers(res.data);
@@ -106,7 +106,7 @@ const ClassDetail = () => {
 
   const handleAddStudents = async () => {
     try {
-      await axios.post(`http://localhost:5000/api/classes/${id}/students`, {
+      await axios.post(`/api/classes/${id}/students`, {
         studentIds: selectedToAdd,
       });
       notification.success({ message: 'Students added' });
@@ -118,7 +118,7 @@ const ClassDetail = () => {
   };
 
   const openMoveModal = async () => {
-    const res = await axios.get(`http://localhost:5000/api/classes`);
+    const res = await axios.get(`/api/classes`);
     setAllClasses(res.data.filter(cls => cls._id !== id));
     setMoveModalVisible(true);
   };
@@ -126,7 +126,7 @@ const ClassDetail = () => {
   const handleMoveStudents = async () => {
     if (!targetClassId) return notification.warning({ message: 'Select a class to move to' });
     try {
-      await axios.post(`http://localhost:5000/api/classes/move-students`, {
+      await axios.post(`/api/classes/move-students`, {
         studentIds: selectedIds,
         fromClassId: id,
         toClassId: targetClassId,

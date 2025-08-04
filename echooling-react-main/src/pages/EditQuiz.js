@@ -14,14 +14,14 @@ const EditQuiz = () => {
   const fetchQuiz = async () => {
     try {
       // 1. Lấy quiz info
-      const res = await axios.get(`http://localhost:5000/api/quizzes/${id}`);
+      const res = await axios.get(`/api/quizzes/${id}`);
       setForm({
         title: res.data.title || "",
         description: res.data.description || "",
       });
   
       // 2. Lấy danh sách câu hỏi theo quizId
-      const questionRes = await axios.get(`http://localhost:5000/api/questions/by-quiz/${id}`);
+      const questionRes = await axios.get(`/api/questions/by-quiz/${id}`);
       console.log("📦 Questions:", questionRes.data);
       setQuestions(questionRes.data); // <-- Gán mảng câu hỏi từ API này
   
@@ -56,7 +56,7 @@ const EditQuiz = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put(`http://localhost:5000/api/quizzes/${id}`, {
+      const res = await axios.put(`/api/quizzes/${id}`, {
         ...form,
         questions,
       });

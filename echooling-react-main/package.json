@@ -92,5 +92,7 @@
     "postcss": "^8.5.3",
     "sass": "^1.85.0",
     "tailwindcss": "^4.1.8"
-  }
+  },
+  "proxy": "http://localhost:5000"
+
 }

@@ -1,7 +1,7 @@
 // src/services/questionService.js
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api'; // Địa chỉ API của bạn
+const API_URL = '/api'; // Địa chỉ API của bạn
 
 // Lấy tất cả Question
 const getAllQuestions = async () => {

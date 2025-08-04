@@ -15,7 +15,7 @@ const Classes = () => {
   const fetchClasses = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('http://localhost:5000/api/classes');
+      const res = await axios.get('/api/classes');
       setClassList(res.data);
     } catch (err) {
       message.error('Failed to fetch classes');
@@ -34,7 +34,7 @@ const Classes = () => {
     }
 
     try {
-      await axios.post('http://localhost:5000/api/classes', { name: className });
+      await axios.post('/api/classes', { name: className });
       setClassName('');
       fetchClasses();
       message.success('Class added');
@@ -45,7 +45,7 @@ const Classes = () => {
 
   const handleDeleteClass = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/classes/${id}`);
+      await axios.delete(`/api/classes/${id}`);
       fetchClasses();
       message.success('Class deleted');
     } catch (err) {

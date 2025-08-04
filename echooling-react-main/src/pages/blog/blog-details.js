@@ -22,7 +22,7 @@ const BlogDetails = () => {
             }
         
             try {
-                const response = await fetch(`http://localhost:5000/api/blog/${id}`); // Gọi API với id
+                const response = await fetch(`/api/blog/${id}`); // Gọi API với id
                 if (!response.ok) {
                     const errorData = await response.json();
                     throw new Error(errorData.message || 'Không thể tải dữ liệu bài viết');

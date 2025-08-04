@@ -10,7 +10,7 @@ const Blog = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/blog/'); // Đảm bảo đúng endpoint
+                const res = await axios.get('/api/blog/'); // Đảm bảo đúng endpoint
                 setPosts(res.data);
             } catch (err) {
                 console.error('Lỗi khi lấy bài viết:', err);

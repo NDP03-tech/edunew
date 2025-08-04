@@ -15,13 +15,13 @@ const QuizBuilder = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const quizRes = await fetch(`http://localhost:5000/api/quizzes/${quizId}`);
+        const quizRes = await fetch(`/api/quizzes/${quizId}`);
         if (!quizRes.ok) throw new Error("Quiz not found.");
         const quizData = await quizRes.json();
         console.log("✅ Quiz Info:", quizData);
         setQuizInfo(quizData);
 
-        const questionRes = await fetch(`http://localhost:5000/api/questions/by-quiz/${quizId}`);
+        const questionRes = await fetch(`/api/questions/by-quiz/${quizId}`);
         if (!questionRes.ok) throw new Error("Failed to fetch questions.");
         const questionsData = await questionRes.json();
         console.log("✅ Questions Fetched:", questionsData);
@@ -40,7 +40,7 @@ const QuizBuilder = () => {
 
   const handleSaveQuizInfo = async () => {
     try {
-      const quizRes = await fetch(`http://localhost:5000/api/quizzes/${quizId}`, {
+      const quizRes = await fetch(`/api/quizzes/${quizId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(quizInfo),
@@ -59,7 +59,7 @@ const QuizBuilder = () => {
           };
 
           if (q._id) {
-            const res = await fetch(`http://localhost:5000/api/questions/${q._id}`, {
+            const res = await fetch(`/api/questions/${q._id}`, {
               method: "PUT",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(questionData),
@@ -67,7 +67,7 @@ const QuizBuilder = () => {
             if (!res.ok) throw new Error("Failed to update question.");
             return await res.json();
           } else {
-            const res = await fetch(`http://localhost:5000/api/questions`, {
+            const res = await fetch(`/api/questions`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(questionData),
@@ -99,7 +99,7 @@ const QuizBuilder = () => {
 
     try {
       if (questionId) {
-        const res = await fetch(`http://localhost:5000/api/questions/${questionId}`, {
+        const res = await fetch(`/api/questions/${questionId}`, {
           method: "DELETE",
         });
 

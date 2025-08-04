@@ -29,7 +29,7 @@ const QuizResultTable = () => {
     try {
       const token = localStorage.getItem('token');
       const res = await axios.get(
-        `http://localhost:5000/api/results/quiz/${quizId}/best-attempts`,
+        `/api/results/quiz/${quizId}/best-attempts`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

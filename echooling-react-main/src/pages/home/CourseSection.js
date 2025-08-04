@@ -16,7 +16,7 @@ const Course = () => {
         // Gọi API khi component được render
         const fetchCourses = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/course/'); // Đổi đường dẫn nếu khác
+                const res = await axios.get('/api/course/'); // Đổi đường dẫn nếu khác
                 setCourses(res.data);
                 setLoading(false);
             } catch (err) {

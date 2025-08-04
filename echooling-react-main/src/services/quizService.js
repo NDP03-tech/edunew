@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api'; // URL của API (thay đổi theo đúng địa chỉ của bạn)
+const API_URL = '/api'; // URL của API (thay đổi theo đúng địa chỉ của bạn)
 
 const getQuizzes = async () => {
   try {

@@ -27,7 +27,7 @@ const InstructorDetailsMain = () => {
     useEffect(() => {
         const fetchCourses = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/course/');
+                const response = await fetch('/api/course/');
                 const data = await response.json();
                 setCourses(data);
             } catch (error) {

@@ -15,7 +15,7 @@ const GradesPage = () => {
     const fetchSummary = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get(`http://localhost:5000/api/results/user-summary/${userId}`, {
+        const res = await axios.get(`/api/results/user-summary/${userId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 

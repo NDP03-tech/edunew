@@ -33,7 +33,7 @@ const ResultsStatsPage = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
 
-    fetch('http://localhost:5000/api/results/user/results-stats', {
+    fetch('/api/results/user/results-stats', {
       headers: {
         Authorization: `Bearer ${token}`
       }

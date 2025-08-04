@@ -30,7 +30,7 @@ const AdminEvent = () => {
 
   const fetchEvents = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/events', {
+      const res = await fetch('/api/events', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -41,7 +41,7 @@ const AdminEvent = () => {
   };
 
   const fetchEventById = async (_id) => {
-    const res = await fetch(`http://localhost:5000/api/events/${_id}`);
+    const res = await fetch(`/api/events/${_id}`);
     const event = await res.json();
     return event;
   };
@@ -87,8 +87,8 @@ const AdminEvent = () => {
     }
 
     const url = editingId
-      ? `http://localhost:5000/api/events/${editingId}`
-      : 'http://localhost:5000/api/events/create';
+      ? `/api/events/${editingId}`
+      : '/api/events/create';
     const method = editingId ? 'PUT' : 'POST';
 
     const res = await fetch(url, {
@@ -112,7 +112,7 @@ const AdminEvent = () => {
   };
 
   const handleDelete = async (_id) => {
-    const res = await fetch(`http://localhost:5000/api/events/${_id}`, {
+    const res = await fetch(`/api/events/${_id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -189,7 +189,7 @@ const AdminEvent = () => {
           <Upload
             name="file"
             accept="image/*"
-            action="http://localhost:5000/api/upload-media"
+            action="/api/upload-media"
             showUploadList={false}
             headers={{ Authorization: `Bearer ${token}` }}
             onChange={info => handleUpload(info, field)}

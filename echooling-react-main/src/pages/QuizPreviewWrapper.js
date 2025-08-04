@@ -35,7 +35,7 @@ const QuizPreviewWrapper = () => {
       try {
         const [fetchedQuiz, fetchedQuestions] = await Promise.all([
           quizService.getQuizById(quizId),
-          fetch(`http://localhost:5000/api/questions/by-quiz/${quizId}`).then(res => res.json())
+          fetch(`/api/questions/by-quiz/${quizId}`).then(res => res.json())
         ]);
 
         if (!isMounted) return;
@@ -45,7 +45,7 @@ const QuizPreviewWrapper = () => {
 
         const token = localStorage.getItem("token");
 
-        const latestRes = await fetch(`http://localhost:5000/api/results/latest/${quizId}`, {
+        const latestRes = await fetch(`/api/results/latest/${quizId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
 
@@ -57,7 +57,7 @@ const QuizPreviewWrapper = () => {
         if (latestData?.submittedAt) {
           console.log("📦 Đã từng nộp bài:", latestData);
         
-          const startRes = await fetch(`http://localhost:5000/api/results/start/${quizId}`, {
+          const startRes = await fetch(`/api/results/start/${quizId}`, {
             method: "POST",
             headers: { Authorization: `Bearer ${token}` }
           });
@@ -91,7 +91,7 @@ const QuizPreviewWrapper = () => {
           setAttemptNumber(latestData.attemptNumber || 1);
         } else {
           console.log("🚀 Gọi API /start để tạo result mới");
-          const startRes = await fetch(`http://localhost:5000/api/results/start/${quizId}`, {
+          const startRes = await fetch(`/api/results/start/${quizId}`, {
             method: "POST",
             headers: { Authorization: `Bearer ${token}` }
           });
@@ -134,7 +134,7 @@ const QuizPreviewWrapper = () => {
 
       if (!result?._id || result?.submittedAt) return;
 
-    fetch(`http://localhost:5000/api/results/temp/${result._id}`, {
+    fetch(`/api/results/temp/${result._id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -177,14 +177,14 @@ const QuizPreviewWrapper = () => {
     }
   
     try {
-      let submitUrl = `http://localhost:5000/api/results/submit/${result._id}`;
+      let submitUrl = `/api/results/submit/${result._id}`;
       let resultToUse = result;
   
       // Nếu đã nộp rồi => tạo result mới
       if (result.submittedAt) {
         console.log("🔁 Đã nộp rồi, tạo mới result và submit lại");
   
-        const startRes = await fetch(`http://localhost:5000/api/results/start/${quiz._id}`, {
+        const startRes = await fetch(`/api/results/start/${quiz._id}`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`
@@ -198,7 +198,7 @@ const QuizPreviewWrapper = () => {
         setAttemptNumber(newResult.attemptNumber);
   
         resultToUse = newResult;
-        submitUrl = `http://localhost:5000/api/results/submit/${newResult._id}`;
+        submitUrl = `/api/results/submit/${newResult._id}`;
       }
   
       console.log("📤 Submitting answers to:", submitUrl);

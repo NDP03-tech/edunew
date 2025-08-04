@@ -9,7 +9,7 @@ const BlogMain = ({ postTitle, postImg, postContent, currentPostId }) => {
     useEffect(() => {
         const fetchRelatedPosts = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/blog');
+                const response = await fetch('/api/blog');
                 if (!response.ok) {
                     throw new Error('Không thể tải dữ liệu bài viết');
                 }

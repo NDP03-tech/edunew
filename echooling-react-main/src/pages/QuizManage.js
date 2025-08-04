@@ -26,8 +26,7 @@ const QuizManage = () => {
   const [selectedQuizzes, setSelectedQuizzes] = useState([]);
   const quizzesPerPage = 5;
   const navigate = useNavigate();
-  const API_BASE = "http://localhost:5000/api/quizzes";
-
+  const API_BASE = "http://localhost:5000";
   const fetchQuizzes = async () => {
     setLoading(true);
     try {
@@ -43,7 +42,7 @@ const QuizManage = () => {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/categories");
+      const res = await axios.get("/api/categories");
       setCategories(res.data.map((c) => c.name));
     } catch (err) {
       console.error("❌ Error fetching categories", err);

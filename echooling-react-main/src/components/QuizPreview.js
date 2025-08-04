@@ -30,14 +30,14 @@ const QuizPreviewWrapper = () => {
       try {
         const [fetchedQuiz, fetchedQuestions] = await Promise.all([
           quizService.getQuizById(quizId),
-          fetch(`http://localhost:5000/api/questions/by-quiz/${quizId}`).then(res => res.json()),
+          fetch(`/api/questions/by-quiz/${quizId}`).then(res => res.json()),
         ]);
 
         setQuiz(fetchedQuiz);
         setQuestions(fetchedQuestions);
 
         const token = localStorage.getItem("token");
-        const res = await fetch(`http://localhost:5000/api/results/latest/${quizId}`, {
+        const res = await fetch(`/api/results/latest/${quizId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
@@ -62,7 +62,7 @@ const QuizPreviewWrapper = () => {
   const handleStart = async () => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(`http://localhost:5000/api/results/start/${quizId}`, {
+      const res = await fetch(`/api/results/start/${quizId}`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -90,7 +90,7 @@ const QuizPreviewWrapper = () => {
       }));
 
     if (result?._id) {
-      fetch(`http://localhost:5000/api/results/temp/${result._id}`, {
+      fetch(`/api/results/temp/${result._id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -112,7 +112,7 @@ const QuizPreviewWrapper = () => {
       }));
 
     try {
-      const res = await fetch(`http://localhost:5000/api/results/submit/${result._id}`, {
+      const res = await fetch(`/api/results/submit/${result._id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

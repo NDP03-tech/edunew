@@ -24,7 +24,7 @@ const AssignedQuizzes = () => {
 
       const userId = user._id || user.id;
       try {
-        const res = await fetch(`http://localhost:5000/api/${userId}/quizzes`, {
+        const res = await fetch(`/api/${userId}/quizzes`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
@@ -33,7 +33,7 @@ const AssignedQuizzes = () => {
           data.map(async (quiz) => {
             try {
               const latestRes = await fetch(
-                `http://localhost:5000/api/results/latest/${quiz._id}`,
+                `/api/results/latest/${quiz._id}`,
                 {
                   headers: { Authorization: `Bearer ${token}` },
                 }

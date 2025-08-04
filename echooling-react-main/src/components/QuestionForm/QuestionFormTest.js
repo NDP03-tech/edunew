@@ -34,7 +34,7 @@ const QuestionFormTest = ({
     const fetchQuestion = async () => {
       if (questionData._id && (!questionData.questionText || !questionData.questionType)) {
         try {
-          const res = await Axios.get(`http://localhost:5000/api/questions/${questionData._id}`);
+          const res = await Axios.get(`/api/questions/${questionData._id}`);
           setFromData(res.data);
         } catch (err) {
           console.error('❌ Error fetching question:', err);
@@ -134,7 +134,7 @@ const QuestionFormTest = ({
     };
 
     try {
-      const response = await Axios.post('http://localhost:5000/api/questions', newQuestion);
+      const response = await Axios.post('/api/questions', newQuestion);
       alert('✅ Question created successfully');
       setQuestionId(response.data._id);
     } catch (error) {
@@ -159,7 +159,7 @@ const QuestionFormTest = ({
     console.log("📤 Updating question with:", updatedData);
 
     try {
-      await Axios.put(`http://localhost:5000/api/questions/${questionId}`, updatedData);
+      await Axios.put(`/api/questions/${questionId}`, updatedData);
       alert('✅ Question updated successfully');
       onFinishEdit?.({ ...updatedData, _id: questionId });
     } catch (error) {

@@ -8,7 +8,7 @@ const UserDashboard = () => {
   const [activityData, setActivityData] = useState([]);
 
   const fetchQuizzesWithLatestAttempts = async (userId, token) => {
-    const res = await fetch(`http://localhost:5000/api/${userId}/quizzes`, {
+    const res = await fetch(`/api/${userId}/quizzes`, {
       headers: { Authorization: `Bearer ${token}` }
     });
 
@@ -16,7 +16,7 @@ const UserDashboard = () => {
 
     const enriched = await Promise.all(
       quizzes.map(async (quiz) => {
-        const attemptRes = await fetch(`http://localhost:5000/api/results/latest/${quiz._id}`, {
+        const attemptRes = await fetch(`/api/results/latest/${quiz._id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const latestAttempt = await attemptRes.json();

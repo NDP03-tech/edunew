@@ -9,7 +9,7 @@ const EventRegisterModal = ({ open, onClose, event }) => {
   const handleSubmit = async (values) => {
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/event-registrations', {
+      await axios.post('/api/event-registrations', {
         ...values,
         eventId: event._id,
         eventTitle: event.eventTitle || event.title,
